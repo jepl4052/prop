@@ -9,7 +9,9 @@ public class AssignmentNode implements INode {
 
     @Override
     public Object evaluate(Object[] args) throws Exception {
-        return null;
+
+        return new Statement(lex1, (double) this.expression.evaluate(args));
+
     }
 
     @Override

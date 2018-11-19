@@ -2,12 +2,27 @@ package prop.assignment0;
 
 public class ExpressionNode implements INode {
 
+    //expr = term , [ ( ’+’ | ’-’ ) , expr ] ;
+
     private Lexeme lex;
     private INode child1, child2;
 
     @Override
     public Object evaluate(Object[] args) throws Exception {
-        return null;
+
+        if(this.child2 != null) {
+            if(this.lex.token() == Token.ADD_OP) {
+                System.out.println("Exp, 1");
+                return (double) this.child1.evaluate(args) + (double) this.child2.evaluate(args);
+            } else {
+                System.out.println("Exp, 2");
+                return (double) this.child1.evaluate(args) - (double) this.child2.evaluate(args);
+            }
+        } else {
+            System.out.println("Exp, 3");
+            return this.child1.evaluate(args);
+        }
+
     }
 
     @Override

@@ -6,7 +6,19 @@ public class TermNode implements INode {
     private INode child1, child2;
     @Override
     public Object evaluate(Object[] args) throws Exception {
-        return null;
+
+        if(this.child2 != null) {
+            if(this.lex.token() == Token.MULT_OP) {
+                System.out.println("Term, 1");
+                return (double) this.child1.evaluate(args) * (double) this.child2.evaluate(args);
+            } else {
+                System.out.println("Term, 2");
+                return (double) this.child1.evaluate(args) / (double) this.child2.evaluate(args);
+            }
+        } else {
+            System.out.println("Term, 3");
+            return this.child1.evaluate(args);
+        }
     }
 
     @Override
