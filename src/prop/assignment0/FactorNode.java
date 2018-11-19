@@ -20,10 +20,11 @@ public class FactorNode implements INode {
                     stmt = (Statement) args[i];
                 }
 
-                if (stmt.getId().value().equals(lex1.value())) {
+                if (stmt.getId().value().equals(this.lex1.value())) {
                         return stmt.getValue();
                     }
             }
+            return 0.0;
         }
         return Double.parseDouble(this.lex1.value().toString());
     }

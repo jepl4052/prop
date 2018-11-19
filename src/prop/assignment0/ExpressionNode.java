@@ -12,6 +12,8 @@ public class ExpressionNode implements INode {
 
         if(this.child2 != null) {
             if(this.lex.token() == Token.ADD_OP) {
+                // a = 4 + 3 + 2
+                // child1.value + child2.value then get rest of child 2
                 return (double) this.child1.evaluate(args) + (double) this.child2.evaluate(args);
             } else {
                 return (double) this.child1.evaluate(args) - (double) this.child2.evaluate(args);

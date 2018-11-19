@@ -9,7 +9,7 @@ public class BlockNode implements INode {
 
     @Override
     public Object evaluate(Object[] args) throws Exception {
-        Statement[] statements = new Statement[512];
+        Statement[] statements = new Statement[1024];
         if(this.stmts != null) {
             return this.stmts.evaluate(statements);
         }
