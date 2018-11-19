@@ -8,7 +8,6 @@ public class FactorNode implements INode {
     @Override
     public Object evaluate(Object[] args) throws Exception {
         if(this.lex2 != null) {
-            System.out.println("Factor, 1");
             return this.expression.evaluate(args);
         }
         if (this.lex1.token() == Token.IDENT) {
@@ -17,21 +16,15 @@ public class FactorNode implements INode {
 
             for(int i = 0; i < args.length; i++) {
 
-                System.out.println(args[i].getClass() + " = " + stmt.getClass());
-
                 if (args[i].getClass() == stmt.getClass()) {
                     stmt = (Statement) args[i];
                 }
 
-                System.out.println(stmt.getId().value() + " = " + lex1.value());
-
                 if (stmt.getId().value().equals(lex1.value())) {
-                        System.out.println("Factor, 2");
                         return stmt.getValue();
                     }
             }
         }
-        System.out.println("Factor, 3");
         return Double.parseDouble(this.lex1.value().toString());
     }
 

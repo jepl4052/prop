@@ -9,14 +9,11 @@ public class TermNode implements INode {
 
         if(this.child2 != null) {
             if(this.lex.token() == Token.MULT_OP) {
-                System.out.println("Term, 1");
                 return (double) this.child1.evaluate(args) * (double) this.child2.evaluate(args);
             } else {
-                System.out.println("Term, 2");
                 return (double) this.child1.evaluate(args) / (double) this.child2.evaluate(args);
             }
         } else {
-            System.out.println("Term, 3");
             return this.child1.evaluate(args);
         }
     }

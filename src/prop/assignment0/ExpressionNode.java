@@ -12,14 +12,11 @@ public class ExpressionNode implements INode {
 
         if(this.child2 != null) {
             if(this.lex.token() == Token.ADD_OP) {
-                System.out.println("Exp, 1");
                 return (double) this.child1.evaluate(args) + (double) this.child2.evaluate(args);
             } else {
-                System.out.println("Exp, 2");
                 return (double) this.child1.evaluate(args) - (double) this.child2.evaluate(args);
             }
         } else {
-            System.out.println("Exp, 3");
             return this.child1.evaluate(args);
         }
 
