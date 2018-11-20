@@ -10,18 +10,27 @@ public class ExpressionNode implements INode {
     @Override
     public Object evaluate(Object[] args) throws Exception {
 
-        if(this.child2 != null) {
-            if(this.lex.token() == Token.ADD_OP) {
-                // a = 4 + 3 + 2
-                // child1.value + child2.value then get rest of child 2
-                return (double) this.child1.evaluate(args) + (double) this.child2.evaluate(args);
+        Double result = (Double) args[1];
+        Token token = (Token) args[2];
+
+        if(result != null && token != null) {
+            args[1] = null;
+            args[2] = null;
+            this.child1.evaluate(args);
+
+            if(token == Token.SUB_OP) {
+                args[1] = result - (Double) args[1];
             } else {
-                return (double) this.child1.evaluate(args) - (double) this.child2.evaluate(args);
+                args[1] = result + (Double) args[1];
             }
         } else {
-            return this.child1.evaluate(args);
+            this.child1.evaluate(args);
         }
-
+        if(this.lex != null) {
+            args[2] = this.lex.token();
+            this.child2.evaluate(args);
+        }
+        return null;
     }
 
     @Override

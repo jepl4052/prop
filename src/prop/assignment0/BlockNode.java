@@ -1,5 +1,9 @@
 package prop.assignment0;
 
+import sun.tools.jstat.Token;
+
+import java.util.HashMap;
+
 public class BlockNode implements INode {
 
     // block = ’{’ , stmts , ’}’ ;
@@ -9,11 +13,12 @@ public class BlockNode implements INode {
 
     @Override
     public Object evaluate(Object[] args) throws Exception {
-        Statement[] statements = new Statement[1024];
         if(this.stmts != null) {
-            return this.stmts.evaluate(statements);
+            args = new Object[]{new HashMap<String, Double>(), null, null};
+            return this.stmts.evaluate(args);
+        } else {
+            return "";
         }
-        return null;
     }
 
     @Override

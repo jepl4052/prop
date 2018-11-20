@@ -1,5 +1,7 @@
 package prop.assignment0;
 
+import java.util.HashMap;
+
 public class AssignmentNode implements INode {
 
     private Lexeme lex1, lex2, lex3;
@@ -10,8 +12,21 @@ public class AssignmentNode implements INode {
     @Override
     public Object evaluate(Object[] args) throws Exception {
 
-        return new Statement(lex1, (double) this.expression.evaluate(args));
+        args[1] = null;
+        args[2] = null;
+        this.expression.evaluate(args);
 
+        Double result = (Double) args[1];
+
+        HashMap<String, Double> variables = (HashMap<String, Double>) args[0];
+        variables.put(this.lex1.value().toString(), result);
+
+        StringBuilder s = new StringBuilder();
+        s.append(this.lex1.value().toString())
+                .append(" = ")
+                .append(result)
+                .append("\n");
+        return s.toString();
     }
 
     @Override

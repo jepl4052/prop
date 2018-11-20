@@ -7,15 +7,24 @@ public class TermNode implements INode {
     @Override
     public Object evaluate(Object[] args) throws Exception {
 
-        if(this.child2 != null) {
-            if(this.lex.token() == Token.MULT_OP) {
-                return (double) this.child1.evaluate(args) * (double) this.child2.evaluate(args);
+        Double result = (Double) args[1];
+        Token token = (Token) args[2];
+        Double value = (Double) this.child1.evaluate(args);
+
+        if(result != null && token != null) {
+            if(token == Token.DIV_OP) {
+                args[1] = result / value;
             } else {
-                return (double) this.child1.evaluate(args) / (double) this.child2.evaluate(args);
+                args[1] = result * value;
             }
         } else {
-            return this.child1.evaluate(args);
+            args[1] = value;
         }
+        if(this.lex != null) {
+            args[2] = this.lex.token();
+            this.child2.evaluate(args);
+        }
+        return null;
     }
 
     @Override

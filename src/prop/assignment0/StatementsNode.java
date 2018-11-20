@@ -9,32 +9,7 @@ public class StatementsNode implements INode {
     @Override
     public Object evaluate(Object[] args) throws Exception {
 
-        if(this.child1 != null) {
-            Statement stmt = (Statement)child1.evaluate(args);
-            StringBuilder s = new StringBuilder();
-            s.append(stmt.getId().value())
-                    .append(" = ")
-                    .append(stmt.getValue())
-                    .append("\n");
-
-            for(int i = 0; i < args.length; i++) {
-                if(args[i] == null) {
-                    args[i] = stmt;
-                    break;
-                }
-            }
-
-            if(this.child2 != null) {
-                Object o = child2.evaluate(args);
-                if(o != null) {
-                    return s.append(o);
-                }
-            }
-
-            return s.toString();
-        }
-
-        return null;
+        return (this.child1 != null) ? this.child1.evaluate(args).toString() + this.child2.evaluate(args).toString() : "";
     }
 
     @Override

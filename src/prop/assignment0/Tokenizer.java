@@ -27,6 +27,7 @@ public class Tokenizer implements ITokenizer {
         if(this.scanner != null) {
 
             while (Character.isWhitespace(this.scanner.current()) || this.scanner.current() == Scanner.NULL) {
+                //this.currentLexeme = new Lexeme(Scanner.NULL, Token.NULL); //could be implemented, but why?
                 this.scanner.moveNext();
             }
 
