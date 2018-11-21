@@ -2,7 +2,7 @@
  * @authors:
  * jens plate, jepl4052
  * erik hörnström, erho7892
- * marcus posette, mapo
+ * marcus posette, mapo8904
  */
 
 package prop.assignment0;
