@@ -2,6 +2,8 @@ package prop.assignment0;
 
 public class TermNode implements INode {
 
+    // term = factor , [ ( ’*’ | ’/’) , term] ;
+
     private Lexeme lex;
     private INode child1, child2;
     @Override

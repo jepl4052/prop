@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 public class FactorNode implements INode {
 
+    // factor = int | id | ’(’ , expr , ’)’ ;
+
     private Lexeme lex1, lex2;
     private INode expression;
 
@@ -18,7 +20,7 @@ public class FactorNode implements INode {
                 if(variables.containsKey(this.lex1.value())) {
                     return variables.get(this.lex1.value());
                 } else {
-                    return 0.0;
+                    return 0;
                 }
             }
         } else {
