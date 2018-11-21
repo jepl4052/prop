@@ -1,3 +1,10 @@
+/**
+ * @authors:
+ * jens plate, jepl4052
+ * erik hörnström, erho7892
+ * marcus posette, mapo
+ */
+
 package prop.assignment0;
 
 public class StatementsNode implements INode {
@@ -14,14 +21,15 @@ public class StatementsNode implements INode {
 
     @Override
     public void buildString(StringBuilder builder, int tabs) {
-        for(int i = 0; i < tabs; i++) {
-            builder.append("\t");
-        }
+
+        Tabber.append(builder, tabs);
         builder.append("StatementsNode\n");
         tabs++;
+
         if(this.child1 != null) {
             this.child1.buildString(builder, tabs);
         }
+
         if(this.child2 != null) {
             this.child2.buildString(builder, tabs);
         }

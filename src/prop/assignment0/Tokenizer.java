@@ -1,3 +1,10 @@
+/**
+ * @authors:
+ * jens plate, jepl4052
+ * erik hörnström, erho7892
+ * marcus posette, mapo
+ */
+
 package prop.assignment0;
 
 import java.io.IOException;
@@ -116,9 +123,11 @@ public class Tokenizer implements ITokenizer {
             default:
                 if(findChar.matches("[a-z]+")) {
                     this.currentLexeme = new Lexeme(findChar, Token.IDENT);
-                } else if (findChar.matches("[\\d]+")) {
+                }
+                else if (findChar.matches("[\\d]+")) {
                     this.currentLexeme = new Lexeme(Double.parseDouble(findChar), Token.INT_LIT);
-                } else {
+                }
+                else {
                     throw new TokenizerException("TokenizerException: Not valid: " + findChar);
                 }
         }

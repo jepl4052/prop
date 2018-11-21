@@ -1,6 +1,11 @@
-package prop.assignment0;
+/**
+ * @authors:
+ * jens plate, jepl4052
+ * erik hörnström, erho7892
+ * marcus posette, mapo
+ */
 
-import sun.tools.jstat.Token;
+package prop.assignment0;
 
 import java.util.HashMap;
 

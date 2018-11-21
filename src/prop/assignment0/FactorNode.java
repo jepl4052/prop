@@ -1,3 +1,10 @@
+/**
+ * @authors:
+ * jens plate, jepl4052
+ * erik hörnström, erho7892
+ * marcus posette, mapo
+ */
+
 package prop.assignment0;
 
 import java.util.HashMap;
@@ -13,17 +20,21 @@ public class FactorNode implements INode {
     public Object evaluate(Object[] args) throws Exception {
 
         if(this.expression == null) {
+
             if(this.lex1.token() == Token.INT_LIT) {
                 return Double.parseDouble(this.lex1.value().toString());
-            } else {
+            }
+            else {
                 HashMap<String, Double> variables = (HashMap<String, Double>) args[0];
+
                 if(variables.containsKey(this.lex1.value())) {
                     return variables.get(this.lex1.value());
                 } else {
                     return 0;
                 }
             }
-        } else {
+        }
+        else {
             Object[] arr = {args[0], null, null};
             this.expression.evaluate(arr);
             return arr[1];
@@ -32,36 +43,36 @@ public class FactorNode implements INode {
 
     @Override
     public void buildString(StringBuilder builder, int tabs) {
-        for(int i = 0; i < tabs; i++) {
-            builder.append("\t");
-        }
+
+        Tabber.append(builder, tabs);
+
         builder.append("FactorNode\n");
         tabs++;
 
         if(this.lex1.token() == Token.IDENT || this.lex1.token() == Token.INT_LIT) {
-            for(int i = 0; i < tabs; i++) {
-                builder.append("\t");
-            }
+
+            Tabber.append(builder, tabs);
+
             builder.append(this.lex1.token())
                     .append(" ")
                     .append(this.lex1.value())
                     .append("\n");
 
         } else if (this.lex1.token() == Token.LEFT_PAREN) {
-            for(int i = 0; i < tabs; i++) {
-                builder.append("\t");
-            }
+
+            Tabber.append(builder, tabs);
+
             builder.append(this.lex1.token())
                     .append(" ")
                     .append(this.lex1.value())
                     .append("\n");
 
-            if(this.expression != null)
+            if(this.expression != null) {
                 this.expression.buildString(builder, tabs);
-
-            for(int i = 0; i < tabs; i++) {
-                builder.append("\t");
             }
+
+            Tabber.append(builder, tabs);
+
             builder.append(this.lex2.token())
                     .append(" ")
                     .append(this.lex2.value())

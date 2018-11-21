@@ -1,3 +1,10 @@
+/**
+ * @authors:
+ * jens plate, jepl4052
+ * erik hörnström, erho7892
+ * marcus posette, mapo
+ */
+
 package prop.assignment0;
 
 public class TermNode implements INode {
@@ -14,28 +21,29 @@ public class TermNode implements INode {
         Double value = (Double) this.child1.evaluate(args);
 
         if(result != null && token != null) {
+
             if(token == Token.DIV_OP) {
                 args[1] = result / value;
-            } else {
+            }
+            else {
                 args[1] = result * value;
             }
-        } else {
+        }
+        else {
             args[1] = value;
         }
+
         if(this.lex != null) {
             args[2] = this.lex.token();
             this.child2.evaluate(args);
         }
-        return null;
+        return args;
     }
 
     @Override
     public void buildString(StringBuilder builder, int tabs) {
 
-        for (int i = 0; i < tabs; i++) {
-            builder.append("\t");
-        }
-
+        Tabber.append(builder, tabs);
         builder.append("TermNode\n");
         tabs++;
 
@@ -45,9 +53,12 @@ public class TermNode implements INode {
 
         if (this.lex != null) {
 
-            for (int i = 0; i < tabs; i++) { builder.append("\t"); }
+            Tabber.append(builder, tabs);
 
-            builder.append(this.lex.token() + " " + this.lex.value() + "\n");
+            builder.append(this.lex.token())
+                    .append( " ")
+                    .append(this.lex.value())
+                    .append( "\n");
 
             if(this.child2 != null) {
                 this.child2.buildString(builder, tabs);

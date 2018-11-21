@@ -1,3 +1,10 @@
+/**
+ * @authors:
+ * jens plate, jepl4052
+ * erik hörnström, erho7892
+ * marcus posette, mapo
+ */
+
 package prop.assignment0;
 
 public class ExpressionNode implements INode {
@@ -20,24 +27,26 @@ public class ExpressionNode implements INode {
 
             if(token == Token.SUB_OP) {
                 args[1] = result - (Double) args[1];
-            } else {
+            }
+            else {
                 args[1] = result + (Double) args[1];
             }
-        } else {
+        }
+        else {
             this.child1.evaluate(args);
         }
+
         if(this.lex != null) {
             args[2] = this.lex.token();
             this.child2.evaluate(args);
         }
-        return null;
+        return args;
     }
 
     @Override
     public void buildString(StringBuilder builder, int tabs) {
 
-        for(int i = 0; i < tabs; i++) { builder.append("\t"); }
-
+        Tabber.append(builder, tabs);
         builder.append("ExpressionNode\n");
         tabs++;
 
@@ -47,7 +56,7 @@ public class ExpressionNode implements INode {
 
         if(this.lex != null) {
 
-            for(int i = 0; i < tabs; i++) { builder.append("\t"); }
+            Tabber.append(builder, tabs);
 
             builder.append(this.lex.token())
                     .append(" ")

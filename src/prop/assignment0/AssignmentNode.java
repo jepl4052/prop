@@ -1,3 +1,10 @@
+/**
+ * @authors:
+ * jens plate, jepl4052
+ * erik hörnström, erho7892
+ * marcus posette, mapo
+ */
+
 package prop.assignment0;
 
 import java.util.HashMap;
@@ -26,25 +33,25 @@ public class AssignmentNode implements INode {
                 .append(" = ")
                 .append(result)
                 .append("\n");
+
         return s.toString();
     }
 
     @Override
     public void buildString(StringBuilder builder, int tabs) {
 
-        for(int i = 0; i < tabs; i++) { builder.append("\t"); }
-
+        Tabber.append(builder, tabs);
         builder.append("AssignmentNode\n");
         tabs++;
 
-        for(int i = 0; i < tabs; i++) { builder.append("\t"); }
+        Tabber.append(builder, tabs);
 
         builder.append(this.lex1.token())
                 .append(" ")
                 .append(this.lex1.value())
                 .append("\n");
 
-        for(int i = 0; i < tabs; i++) { builder.append("\t"); }
+        Tabber.append(builder, tabs);
 
         builder.append(this.lex2.token())
                 .append(" ")
@@ -55,7 +62,7 @@ public class AssignmentNode implements INode {
             expression.buildString(builder, tabs);
         }
 
-        for(int i = 0; i < tabs; i++) { builder.append("\t"); }
+        Tabber.append(builder, tabs);
 
         builder.append(this.lex3.token())
                 .append(" ")
