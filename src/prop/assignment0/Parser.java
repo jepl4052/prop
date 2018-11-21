@@ -1,3 +1,10 @@
+/**
+ * @authors:
+ * jens plate, jepl4052
+ * erik hörnström, erho7892
+ * marcus posette, mapo
+ */
+
 package prop.assignment0;
 
 import java.io.IOException;
