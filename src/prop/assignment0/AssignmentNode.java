@@ -7,6 +7,7 @@
 
 package prop.assignment0;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 
 public class AssignmentNode implements INode {
@@ -23,10 +24,13 @@ public class AssignmentNode implements INode {
         args[2] = null;
         this.expression.evaluate(args);
 
-        Double result = (Double) args[1];
+        // Cut all decimals except first one
+        DecimalFormat oneDecimal = new DecimalFormat("#.#");
+        String result = oneDecimal.format(args[1]);
+        result = result.replace(',', '.');
 
         HashMap<String, Double> variables = (HashMap<String, Double>) args[0];
-        variables.put(this.lex1.value().toString(), result);
+        variables.put(this.lex1.value().toString(), Double.parseDouble(result));
 
         StringBuilder s = new StringBuilder();
         s.append(this.lex1.value().toString())
